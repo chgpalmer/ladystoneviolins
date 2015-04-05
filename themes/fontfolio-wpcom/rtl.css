@@ -1,0 +1,262 @@
+/*
+Theme Name: Fontfolio
+*/
+
+/* =Reset
+-------------------------------------------------------------- */
+
+caption, th, td {
+	text-align: right;
+}
+
+/* =Global
+----------------------------------------------- */
+
+/* Text elements */
+
+ul, ol {
+	margin: 0 3em 1.5em 0;
+}
+
+li > ul,
+li > ol {
+	margin-right: 1.5em;
+	margin-left: auto;
+}
+
+blockquote {
+	border-right: 3px solid #e4e4e2;
+	border-left: none;
+}
+
+blockquote blockquote {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+textarea {
+	padding-right: 3px;
+	padding-left: 0;
+}
+
+/* Alignment */
+.alignright {
+	float: right;
+	margin: .75em 0 .75em 1.5em;
+}
+
+.alignleft {
+	float: left;
+	margin: .75em 1.5em .75em 0;
+}
+
+/* Text meant only for screen readers */
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	right: 5px;
+	left: auto;
+}
+
+
+/* =Layout: Content-Sidebar
+----------------------------------------------- */
+
+.content-area {
+	float: right;
+	margin: 0 0 0 -24.75%;
+}
+
+.site-content {
+	margin: 0 0 0 30%;
+}
+
+.site-main .widget-area {
+	float: left;
+}
+
+/* =Layout: Home/Archives/Search
+----------------------------------------------- */
+
+.blog .hentry,
+.archive .hentry {
+	float: right;
+}
+
+.blog .hentry:first-of-type {
+	float: right;
+}
+
+.entry-thumbnail a {
+	right: 0;
+	left: auto;
+}
+
+/* =Header
+----------------------------------------------- */
+
+.site-branding {
+	float: right;
+}
+
+/* Header Search */
+
+.header-search {
+	float: left;
+}
+
+.header-search .search-field {
+	border-right: 1px solid #e4e4e2;
+	padding-right: 10px;
+	padding-left: 0;
+	border-left: none;
+}
+
+.header-search .search-submit {
+	left: 0;
+	right: auto;
+}
+
+.header-search .search-button:before {
+	left: 0;
+	right: auto;
+}
+
+/* Social Links */
+
+[data-icon]:before {
+	margin: 0 5px 5px 0;
+}
+
+[data-icon]:first-of-type:before {
+	margin-right: 0;
+	margin-left: auto;
+}
+
+/* =Primary Menu
+----------------------------------------------- */
+
+.main-navigation {
+	float: left;
+	text-align: left;
+}
+
+.main-navigation ul {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.main-navigation ul ul {
+	float: right;
+	right: 0;
+	text-align: right;
+	left: auto;
+}
+
+.main-navigation ul ul ul {
+	right: 100%;
+	left: auto;
+}
+
+/* =Secondary Menu
+----------------------------------------------- */
+
+.secondary-navigation {
+	float: left;
+}
+
+.secondary-navigation ul {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.secondary-navigation li {
+	float: right;
+}
+
+.secondary-navigation a:before {
+	margin-left: 5px;
+	margin-right: auto;
+}
+
+.secondary-navigation li.current_page_item a:before,
+.secondary-navigation li.current-menu-item a:before {
+	margin-left: 5px;
+	margin-right: auto;
+}
+
+/* =Content
+----------------------------------------------- */
+
+/* 404 */
+
+.error404 .widget {
+	float: right;
+	margin-left: 3.3%;
+	margin-right: auto;
+}
+
+.error404 .widget:last-of-type {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+/* =Post Formats
+----------------------------------------------- */
+
+.blog .entry-format:before,
+.archive .entry-format:before {
+	margin-right: -45px;
+	right: 50%;
+	left: auto;
+	margin-left: auto;
+}
+
+/* =Navigation
+----------------------------------------------- */
+
+[class*="navigation"] .nav-previous {
+	float: right;
+}
+
+[class*="navigation"] .nav-next {
+	float: left;
+	text-align: left;
+}
+
+/* =Comments
+----------------------------------------------- */
+
+.comment-list .children {
+	padding: 0 1.5em 0 0;
+}
+
+.comment-author .avatar {
+	float: right;
+	margin: 0 0 0 15px;
+}
+
+.comment-meta .edit-link,
+.pingback .edit-link,
+.trackback .edit-link {
+	float: left;
+	text-align: left;
+}
+
+#reply-title a {
+	float: left;
+}
+
+/* =Widgets
+----------------------------------------------- */
+
+.widget ul ul {
+	margin: 0 .75em 0 0;
+}
+
+/* Calendar widget */
+
+#next {
+	text-align: left;
+}

@@ -1,0 +1,263 @@
+# Copyright (C) 2014 Kelly Dwan & Mel Choyce
+# This file is distributed under the GNU General Public License.
+msgid ""
+msgstr ""
+"Project-Id-Version: Museum 1.0-wpcom\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/museum\n"
+"POT-Creation-Date: 2014-10-14 03:40:55+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:15
+msgid "Page not found."
+msgstr ""
+
+#: 404.php:19
+msgid ""
+"Apologies, but it looks like that page doesn't exist. Try looking in the "
+"navigation menu, or using the search box below."
+msgstr ""
+
+#: archive.php:30
+msgid "Day: %s"
+msgstr ""
+
+#: archive.php:33
+msgid "Month: %s"
+msgstr ""
+
+#: archive.php:33
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#: archive.php:36
+msgid "Year: %s"
+msgstr ""
+
+#: archive.php:36
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: archive.php:39
+msgid "Asides"
+msgstr ""
+
+#: archive.php:42
+msgid "Galleries"
+msgstr ""
+
+#: archive.php:45
+msgid "Images"
+msgstr ""
+
+#: archive.php:48
+msgid "Videos"
+msgstr ""
+
+#: archive.php:51
+msgid "Quotes"
+msgstr ""
+
+#: archive.php:54
+msgid "Links"
+msgstr ""
+
+#: archive.php:57
+msgid "Statuses"
+msgstr ""
+
+#: archive.php:60
+msgid "Audios"
+msgstr ""
+
+#: archive.php:63
+msgid "Chats"
+msgstr ""
+
+#: archive.php:66
+msgid "Archives"
+msgstr ""
+
+#: comments.php:30
+msgctxt "comments title"
+msgid "One comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:41
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:42
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:43
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:53
+msgid "Comments are closed."
+msgstr ""
+
+#: content-attachment.php:25 content-page.php:19 content-single.php:23
+msgid "Pages:"
+msgstr ""
+
+#: content-none.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:19
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: content-none.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: content-page.php:24
+msgid "Edit Page"
+msgstr ""
+
+#: content-search.php:14 functions.php:167
+msgid "Read Post"
+msgstr ""
+
+#: content-single.php:30
+msgid "Edit Post"
+msgstr ""
+
+#: footer.php:17
+msgid "http://wordpress.org/"
+msgstr ""
+
+#: footer.php:17
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: footer.php:20
+msgid "Theme: %1$s by %2$s."
+msgstr ""
+
+#: functions.php:56
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:57
+msgid "Social Links"
+msgstr ""
+
+#: functions.php:80
+msgid "Footer Sidebar One"
+msgstr ""
+
+#: functions.php:88
+msgid "Footer Sidebar Two"
+msgstr ""
+
+#. Translators: If there are characters in your language that are not
+#. 	 * supported by Quattrocento Sans, translate this to 'off'. Do not
+#. 	 * translate into your own language.
+#: functions.php:134
+msgctxt "Quattrocento Sans font: on or off"
+msgid "on"
+msgstr ""
+
+#. Translators: If there are characters in your language that are not
+#. 	 * supported by Playfair Display, translate this to 'off'. Do not
+#. 	 * translate into your own language.
+#: functions.php:140
+msgctxt "Playfair Display font: on or off"
+msgid "on"
+msgstr ""
+
+#: header.php:25
+msgid "Menu"
+msgstr ""
+
+#: header.php:26
+msgid "Skip to content"
+msgstr ""
+
+#: inc/extras.php:51
+msgid "Page %s"
+msgstr ""
+
+#: inc/template-tags.php:58
+msgid "Posts navigation"
+msgstr ""
+
+#: inc/template-tags.php:62
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr ""
+
+#: inc/template-tags.php:66
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/template-tags.php:91
+msgid "Post navigation"
+msgstr ""
+
+#: inc/template-tags.php:94
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&laquo;</span> %title"
+msgstr ""
+
+#: inc/template-tags.php:95
+msgctxt "Next post link"
+msgid "%title <span class=\"meta-nav\">&raquo;</span>"
+msgstr ""
+
+#: inc/template-tags.php:169
+msgid "by %1$s"
+msgstr ""
+
+#: inc/template-tags.php:169
+msgid " on %2$s"
+msgstr ""
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Museum"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://wordpress.com/themes/museum/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Museum is a theme crafted to showcase all of your best photographs, "
+"drawings, or illustrations. Featuring elegant, museum-inspired typography "
+"and ample room for your images, Museum pays special attention to category "
+"and media attachment pages to help your collections shine."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Kelly Dwan & Mel Choyce"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wordpress.com/themes/"
+msgstr ""

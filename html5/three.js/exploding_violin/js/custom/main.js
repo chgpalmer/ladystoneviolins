@@ -2,13 +2,12 @@
 
 // global(?) variables
 var scene, camera, renderer;
-var objects = new Array();
 var tweens = new Array();
 var stats;
-var numObjects = 3;
 var currentTweens = 0;
 var expand = false;
 var radius = 100, theta = 0;
+var stretch = 1.8;
 
 // violin
 var violin = new Violin();
@@ -42,14 +41,15 @@ function init() {
 	scene.add( lightPoint );
 
 	// create our violin
-	violin.addPart( 'models/cube.json', 0, 0, 0 );
-	violin.addPart( 'models/cube.json', 3, 0, 0 );
-	violin.addPart( 'models/cube.json', 3, 3, 0 );
-	violin.addPart( 'models/cube.json', 0, 3, 0 );
-	violin.addPart( 'models/cube.json', 0, 3, 3 );
-	violin.addPart( 'models/cube.json', 0, 0, 3 );
-	violin.addPart( 'models/cube.json', 3, 0, 3 );
-	violin.addPart( 'models/cube.json', 3, 3, 3 );
+	violin.addPart( 'models/cube.json', -1, -1, -1 );
+	violin.addPart( 'models/cube.json', 1, -1, -1 );
+	violin.addPart( 'models/cube.json', 1, 1, -1 );
+	violin.addPart( 'models/cube.json', -1, 1, -1 );
+	violin.addPart( 'models/cube.json', -1, 1, 1 );
+	violin.addPart( 'models/cube.json', -1, -1, 1 );
+	violin.addPart( 'models/cube.json', 1, -1, 1 );
+
+	camera.position.set( 3*violin.maxDist, 3*violin.maxDist, 3*violin.maxDist );
 
 	/*
 	// create our objects [loop]
@@ -80,6 +80,7 @@ function init() {
 
 	// add OrbitControls so we can pan around with the mouse
 	controls = new THREE.OrbitControls(camera, renderer.domElement);
+	controls.noZoom = true;
 
 }
 
@@ -90,12 +91,18 @@ function animate() {
 }
 
 function render() {
+	/*
 	for (i=0;i<violin.parts.length;i++) {
 		if (violin.parts[i].mesh) { // wait until models are loaded in
 			violin.parts[i].mesh.rotation.x += 0.01;
 			violin.parts[i].mesh.rotation.y += 0.01;
 		}
 	}
+   */
+
+  	// orbit camera around (0,0,0)
+	if (!mouseDown) orbit( camera );
+	camera.lookAt (new THREE.Vector3 (0.0, 0.0, 0.0));
 
 	// update the picking ray with the camera and mouse position	
 	raycaster.setFromCamera( mouse, camera );	
@@ -192,4 +199,22 @@ function onMouseDown( event ) {
 
 function onMouseUp( event ) {
 	mouseDown = false;
+}
+
+function orbit( camera, angle ) {
+	var origin = {
+		x	: 0,
+		y	: 0,
+	}
+	var radius = Math.sqrt( Math.sqrt(Math.pow(camera.position.x,2)+Math.pow(camera.position.y,2)) + Math.pow(camera.position.z,2) );
+	var angle = Math.atan( camera.position.y / camera.position.x );
+	var newAngle = angle + 0.01;
+	console.log(newAngle);
+
+
+	camera.position.setX( radius * Math.cos( newAngle ) );
+	camera.position.setY( radius * Math.sin( newAngle ) );
+
+
+
 }

@@ -10,6 +10,9 @@ var currentTweens = 0;
 var expand = false;
 var radius = 100, theta = 0;
 
+// violin
+var violin = new Violin();
+
 // Picking stuff
 var mouse = new THREE.Vector2(-999,-999), intersectedMesh, intersects;
 var	raycaster = new THREE.Raycaster();
@@ -27,7 +30,7 @@ animate();
 function init() {
 	// set up our scene, camera and renderer
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
-	camera.position.z = 10;
+	camera.position.set( 10, 10, 10 );
 	scene = new THREE.Scene();
 
 	// create lighting sources
@@ -38,6 +41,17 @@ function init() {
 	lightPoint.position.set(-100,200,100 );
 	scene.add( lightPoint );
 
+	// create our violin
+	violin.addPart( 'models/cube.json', 0, 0, 0 );
+	violin.addPart( 'models/cube.json', 3, 0, 0 );
+	violin.addPart( 'models/cube.json', 3, 3, 0 );
+	violin.addPart( 'models/cube.json', 0, 3, 0 );
+	violin.addPart( 'models/cube.json', 0, 3, 3 );
+	violin.addPart( 'models/cube.json', 0, 0, 3 );
+	violin.addPart( 'models/cube.json', 3, 0, 3 );
+	violin.addPart( 'models/cube.json', 3, 3, 3 );
+
+	/*
 	// create our objects [loop]
 	var geometry, material, object;
 	var position, target, tween;
@@ -49,7 +63,9 @@ function init() {
 		scene.add( objects[i] );
 		objects[i].position.set(i,i,0); // initial positions
 	}
+	*/
 
+	//add renderer
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
@@ -74,9 +90,11 @@ function animate() {
 }
 
 function render() {
-	for (i=0;i<objects.length;i++) {
-		objects[i].rotation.x += 0.01;
-		objects[i].rotation.y += 0.01;
+	for (i=0;i<violin.parts.length;i++) {
+		if (violin.parts[i].mesh) { // wait until models are loaded in
+			violin.parts[i].mesh.rotation.x += 0.01;
+			violin.parts[i].mesh.rotation.y += 0.01;
+		}
 	}
 
 	// update the picking ray with the camera and mouse position	
@@ -84,12 +102,9 @@ function render() {
 
 	// move objects
 	TWEEN.update();
-	// render scene
-	renderer.render( scene, camera );
 
 	// calculate objects intersecting the picking ray
 	intersects = raycaster.intersectObjects( scene.children );
-
 	// mouse intersect objects actions
 	if ( intersects.length > 0 ) {
 		if ( intersectedMesh != intersects[ 0 ].object ) {
@@ -97,11 +112,11 @@ function render() {
 				intersectedMesh.material.emissive.setHex( intersectedMesh.currentHex );
 			intersectedMesh = intersects[ 0 ].object;
 			intersectedMesh.currentHex = intersectedMesh.material.emissive.getHex();
-			intersectedMesh.material.emissive.setHex( 0xff0000 );
+			intersectedMesh.material.emissive.setHex( 0x000000 );
 		} else {
 			if (mouseDown) {
-				intersectedMesh.material.emissive.setHex( 0x00ff00 );
-				alert("penis");
+				intersectedMesh.material.emissive.setHex( 0xffffff );
+				console.log("merhaba");
 			}
 			else
 				intersectedMesh.material.emissive.setHex( 0xff0000 );
@@ -111,6 +126,9 @@ function render() {
 			intersectedMesh.material.emissive.setHex( intersectedMesh.currentHex );
 		intersectedMesh = null;
 	}
+
+	// render scene
+	renderer.render( scene, camera );
 }
 
 function getRandomColor() {
@@ -132,18 +150,20 @@ function startTween() {
 
 function setupTween(stretch){
 	// setup tweening for our array
-	for (var i=0;i<objects.length;i++)
+	for (var i=0;i<violin.parts.length;i++)
 	{
 		(function(e) { //wrapping in an anonymous function because of the callback http://stackoverflow.com/questions/4466098/pass-in-local-variable-to-callback-function
-			var objx = objects[e].position.x;
-			var objy = objects[e].position.y;
-			var position = { x:objx, y:objy };
-			var target = { x:stretch*objx, y:stretch*objy };
+			var objx = violin.parts[e].mesh.position.x;
+			var objy = violin.parts[e].mesh.position.y;
+			var objz = violin.parts[e].mesh.position.z;
+			var position = { x:objx, y:objy, z:objz };
+			var target = { x:stretch*objx, y:stretch*objy, z:stretch*objz };
 			var tween = new TWEEN.Tween(position).to(target, 2000);
 			tweens[e] = tween;
 			tweens[e].onUpdate(function(){ //callback
-				objects[e].position.x = position.x;
-				objects[e].position.y = position.y;
+				violin.parts[e].mesh.position.x = position.x;
+				violin.parts[e].mesh.position.y = position.y;
+				violin.parts[e].mesh.position.z = position.z;
 			});
 			tweens[e].onComplete(function(){
 				currentTweens --;

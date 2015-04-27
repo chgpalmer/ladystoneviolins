@@ -47,23 +47,11 @@ function init() {
 	violin.addPart( 'models/cube.json', -1, 1, -1 );
 	violin.addPart( 'models/cube.json', -1, 1, 1 );
 	violin.addPart( 'models/cube.json', -1, -1, 1 );
-	violin.addPart( 'models/cube.json', 1, -1, 1 );
+	violin.addPart( 'models/cube.json', 10, -1, 1 );
 
-	camera.position.set( 3*violin.maxDist, 3*violin.maxDist, 3*violin.maxDist );
-
-	/*
-	// create our objects [loop]
-	var geometry, material, object;
-	var position, target, tween;
-	for (var i=0;i<numObjects;i++)
-	{
-		geometry = new THREE.BoxGeometry( 1, 1, 1 );
-		material = new THREE.MeshLambertMaterial( { color: getRandomColor() } );
-		objects[i] = new THREE.Mesh( geometry, material );
-		scene.add( objects[i] );
-		objects[i].position.set(i,i,0); // initial positions
-	}
-	*/
+	// position camera relative to violin
+	var e = 10*Math.atan(violin.maxDist/2)
+	camera.position.set( e, e, e );
 
 	//add renderer
 	renderer = new THREE.WebGLRenderer();
@@ -79,8 +67,8 @@ function init() {
 	container.appendChild( stats.domElement );
 
 	// add OrbitControls so we can pan around with the mouse
-	controls = new THREE.OrbitControls(camera, renderer.domElement);
-	controls.noZoom = true;
+	//controls = new THREE.OrbitControls(camera, renderer.domElement);
+	//controls.noZoom = true;
 
 }
 
@@ -91,18 +79,21 @@ function animate() {
 }
 
 function render() {
-	/*
-	for (i=0;i<violin.parts.length;i++) {
-		if (violin.parts[i].mesh) { // wait until models are loaded in
-			violin.parts[i].mesh.rotation.x += 0.01;
-			violin.parts[i].mesh.rotation.y += 0.01;
-		}
-	}
-   */
-
   	// orbit camera around (0,0,0)
-	if (!mouseDown) orbit( camera );
-	camera.lookAt (new THREE.Vector3 (0.0, 0.0, 0.0));
+	if( violin.focus === true ) {
+		camera.lookAt( violin.focusedPart.mesh.position );
+		var origin = new THREE.Vector3 ( 0, 0, 0 );
+		var target = { x:violin.focusedPart.mesh.position.x, y:violin.focusedPart.mesh.position.x, z:violin.focusedPart.mesh.position.x };
+		var tween = new TWEEN.Tween( origin ).to( target, 200 );
+		tween.onUpdate( function(){
+			camera.lookAt( origin );
+		});
+		tween.start();
+	} else {
+		if( !mouseDown ) orbit( camera );
+		camera.lookAt( new THREE.Vector3 ( 0.0, 0.0, 0.0 ) );
+	}
+
 
 	// update the picking ray with the camera and mouse position	
 	raycaster.setFromCamera( mouse, camera );	
@@ -113,26 +104,32 @@ function render() {
 	// calculate objects intersecting the picking ray
 	intersects = raycaster.intersectObjects( scene.children );
 	// mouse intersect objects actions
-	if ( intersects.length > 0 ) {
-		if ( intersectedMesh != intersects[ 0 ].object ) {
-			if ( intersectedMesh )
+	if( intersects.length > 0 ) {
+		if( intersectedMesh != intersects[ 0 ].object ) {
+			if( intersectedMesh )
 				intersectedMesh.material.emissive.setHex( intersectedMesh.currentHex );
 			intersectedMesh = intersects[ 0 ].object;
 			intersectedMesh.currentHex = intersectedMesh.material.emissive.getHex();
 			intersectedMesh.material.emissive.setHex( 0x000000 );
 		} else {
-			if (mouseDown) {
+			if(mouseDown) {
+				violin.uuidToPart( intersectedMesh.uuid ).focus = true;
+				violin.focusOnPart( intersectedMesh.uuid );
 				intersectedMesh.material.emissive.setHex( 0xffffff );
-				console.log("merhaba");
 			}
 			else
 				intersectedMesh.material.emissive.setHex( 0xff0000 );
 		}
 	} else {
-		if ( intersectedMesh )
+		if( intersectedMesh ) {
+			violin.uuidToPart( intersectedMesh.uuid ).focus = false;
 			intersectedMesh.material.emissive.setHex( intersectedMesh.currentHex );
+		}
 		intersectedMesh = null;
+		violin.defocusAll();
 	}
+
+	violin.checkFocus();
 
 	// render scene
 	renderer.render( scene, camera );
@@ -155,30 +152,6 @@ function startTween() {
 	}
 }
 
-function setupTween(stretch){
-	// setup tweening for our array
-	for (var i=0;i<violin.parts.length;i++)
-	{
-		(function(e) { //wrapping in an anonymous function because of the callback http://stackoverflow.com/questions/4466098/pass-in-local-variable-to-callback-function
-			var objx = violin.parts[e].mesh.position.x;
-			var objy = violin.parts[e].mesh.position.y;
-			var objz = violin.parts[e].mesh.position.z;
-			var position = { x:objx, y:objy, z:objz };
-			var target = { x:stretch*objx, y:stretch*objy, z:stretch*objz };
-			var tween = new TWEEN.Tween(position).to(target, 2000);
-			tweens[e] = tween;
-			tweens[e].onUpdate(function(){ //callback
-				violin.parts[e].mesh.position.x = position.x;
-				violin.parts[e].mesh.position.y = position.y;
-				violin.parts[e].mesh.position.z = position.z;
-			});
-			tweens[e].onComplete(function(){
-				currentTweens --;
-			});
-		})(i);
-	}
-}
-
 function onMouseMove( event ) {
 	// calculate mouse position in normalized device coordinates
 	// (-1 to +1) for both components
@@ -187,7 +160,7 @@ function onMouseMove( event ) {
 }
 
 function onWindowResize( event ) {
-	// create an event listener that resizes the renderer with the browser window
+	// create an event listener self resizes the renderer with the browser window
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
@@ -209,7 +182,6 @@ function orbit( camera, angle ) {
 	var radius = Math.sqrt( Math.sqrt(Math.pow(camera.position.x,2)+Math.pow(camera.position.y,2)) + Math.pow(camera.position.z,2) );
 	var angle = Math.atan( camera.position.y / camera.position.x );
 	var newAngle = angle + 0.01;
-	console.log(newAngle);
 
 
 	camera.position.setX( radius * Math.cos( newAngle ) );

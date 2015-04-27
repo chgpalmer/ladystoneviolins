@@ -1,5 +1,5 @@
 var Part = function ( url, x, y, z ) {
-	var that = this;
+	var self = this;
 	this.focus = false;
 	this.mesh;
 
@@ -8,8 +8,8 @@ var Part = function ( url, x, y, z ) {
 			var material = new THREE.MeshLambertMaterial({color: 0x98652B});
 			var mesh = new THREE.Mesh(geometry, material);
 			mesh.position.set( x, y, z );
-			that.mesh = mesh;
-			scene.add(that.mesh);
+			self.mesh = mesh;
+			scene.add(self.mesh);
 	});
 
 

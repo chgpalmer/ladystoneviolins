@@ -1,15 +1,15 @@
 $('#expand').click(function(){
-	if (currentTweens == 0 && expand == false) {
-		setupTween(stretch);
+	if ( currentTweens == 0 && violin.state != 'expand' ) {
+		violin.setupTween(stretch);
 		startTween();
-		expand = true;
+		violin.state = 'expand';
 	}
 });
 
 $('#contract').click(function(){
-	if (currentTweens == 0 && expand == true) {
-		setupTween(1/stretch);
+	if ( currentTweens == 0 && violin.state != 'collapse' ) {
+		violin.setupTween(1/stretch);
 		startTween();
-		expand = false;
+		violin.state = 'collapse';
 	}
 });

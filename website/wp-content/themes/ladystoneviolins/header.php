@@ -5,6 +5,7 @@
  * @package Ladystoneviolins
  */
 ?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -14,10 +15,13 @@
 <?php wp_head(); ?>
 </head>
 
+
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-    <header id="masthead" class="site-header" role="banner">
-        <a class="skip-link screen-reader-text" href="#content" title="Skip to content">Skip to content</a>
+<div id="page">
+    <header id="site-header">
+		<div id="menu-toggle">
+			<button id="site-nav-toggle">toggle</button>
+		</div>
 
         <div class="site-branding">
             <?php //sela_the_site_logo(); ?>
@@ -27,10 +31,11 @@
             <?php endif; ?>
         </div><!-- .site-branding -->
 
-        <nav id="site-navigation" class="main-navigation" role="navigation">
-            <button class="menu-toggle" aria-controls="menu" aria-expanded="false">Menu</button>
-            <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-        </nav><!-- #site-navigation -->
-    </header><!-- #masthead -->
+    </header><!-- #site-header -->
 
-    <div id="content" class="site-content">
+	<nav id="site-nav">
+		<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+	</nav><!-- #site-navigation -->
+    <div id="nav-push"></div>
+
+    <div id="site-content">

@@ -9,18 +9,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ladystoneviolins
 */
 
+/* inspiration from
+https://selademo.wordpress.com/
+among others
+*/
+
+@import url('css/reset.css'); 
 @import url('bootstrap/css/bootstrap.min.css'); 
+
+/*
+Fonts:
+Ladystone Violins - http://openfontlibrary.org/en/font/classica
+Navigation - http://fonts.googleapis.com/css?family=Open+Sans
+*/
 
 /*--------------------------------------------------------------
  General
 --------------------------------------------------------------*/
-
-* {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-}
 
 #site-header {
 	overflow: hidden;
@@ -37,6 +42,7 @@ body {
     background: #fdf;
 }
 
+
 /*--------------------------------------------------------------
  Navigational Menu
 --------------------------------------------------------------*/
@@ -44,19 +50,19 @@ body {
 #page {
     position: relative;
     left: 0;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s ;
-    -o-transition: all 1s ;
-    transition: all 1s ;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s ;
+    -o-transition: all 0.3s ;
+    transition: all 0.3s ;
 }
 #page.nav-expand {
-    left: 100px;
+    left: 200px;
 }
 #site-nav {
     position: absolute;
-    width: 100px;
+    width: 200px;
     height: 100%;
-    left: -100px;
+    left: -200px;
     top: 0px;
 	overflow: hidden;
     background: #dfd;
@@ -66,7 +72,46 @@ body {
 }
 
 #menu-toggle {
+	display: block;
+	text-align: center;
     float: left;
+	cursor: pointer;
+	background: #f00;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+}
+#menu-toggle:before {
+	font-family: "Glyphicons Halflings";
+	content: "\e236";
+}
+#menu-toggle:hover:before {
+	color: #f00;
+}
+
+#site-nav .menu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#site-nav .menu ul li a {
+	display: block;
+	background: #222;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+#site-nav .menu ul li a:hover {
+	text-decoration: none; /*remove underline*/
+	color: #c000.3;
+}
+#site-nav .menu ul ul li a:before {
+	font-family: "Glyphicons Halflings";
+	content: "\e080";
+	margin-right: 10px;
 }
 
 /*--------------------------------------------------------------
@@ -76,10 +121,15 @@ body {
 @media screen and (min-width: 768px) {
     /* General */
     header {
-        min-height: 100px;
+        min-height: 150px;
     }
+	.wrapper {
+		max-width: 960px;
+		margin: 0 auto;
+		clear: both;
+	}
 
-    /* Navigational Menu */
+    /* Navigational Menu Positioning */
     #page #site-nav, #page.nav-expand #site-nav {
         position: relative;
         width: 100%;
@@ -91,9 +141,44 @@ body {
         left: 0px;
         transition: none;
     }
-    #site-nav-toggle {
+    #menu-toggle {
         display: none;
     }
+
+	/* Navigational Menu General Styling */
+	#site-nav {
+		background:#f00;
+	}
+	#site-nav .menu {
+		display: block;
+		text-align: center;
+	}
+	#site-nav .menu ul li {
+		display: inline-block;
+	}
+	#site-nav .menu ul li a {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		padding-left: 10px;
+		padding-right: 10px;
+		height: 50px;
+		line-height: 50px;
+		white-space: nowrap;
+	}
+	#site-nav .menu ul li a:after {
+		content: " \2022";
+		margin-left: 15px;
+	}
+	#site-nav .menu ul li:last-child a:after {
+		content: "";
+	}
+	#site-nav .menu ul li a:hover {
+	}
+	#site-nav .menu ul ul {
+		display: none;
+	}
+
+	
 
     /* Shrinking Fixed Navigational Menu */
     #nav-push {
@@ -104,11 +189,19 @@ body {
     }
     #page.nav-shrink #site-nav {
         position: fixed;
-        -webkit-transition: all 1s;
-        -moz-transition: all 1s ;
-        -o-transition: all 1s ;
-        transition: all 1s ;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
+	#page.nav-shrink #site-nav .menu ul li a {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+		height: 40px;
+		line-height: 40px;
+	}
 
 }
  

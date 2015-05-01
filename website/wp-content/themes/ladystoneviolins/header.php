@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&amp;subset=latin,cyrillic,greek' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
 <?php wp_head(); ?>
 </head>
 
@@ -25,11 +26,9 @@
 			</div>
 
 			<div class="site-branding">
-				<?php //sela_the_site_logo(); ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php if ( '' != get_bloginfo( 'description' ) ) : ?>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-				<?php endif; ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/ladystoneviolins.png" alt="Ladystone Violins - British maker and restorer of stringed instruments">
+				</a>
 			</div><!-- .site-branding -->
 		</div><!-- .wrapper -->
 

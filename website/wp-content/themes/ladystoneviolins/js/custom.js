@@ -10,7 +10,7 @@ $( '#menu-toggle' ).click( function(){
 // Desktop - nav-shrinking Navbar 
 // http://stackoverflow.com/questions/24765155/nav-shrinking-navigation-bar-when-scrolling-down-bootstrap3
 $( window ).scroll( function() {
-    if ( $( document ).scrollTop() > $( '#site-header' ).height() ) 
+    if ( $( document ).scrollTop() > $( '#site-header' ).outerHeight() ) 
         $( '#page' ).addClass( 'nav-shrink' );
     else
         $( '#page' ).removeClass( 'nav-shrink' );

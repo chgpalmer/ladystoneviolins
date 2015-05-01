@@ -27,19 +27,38 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
  General
 --------------------------------------------------------------*/
 
+body {
+	background: #333;
+}
 #site-header {
 	overflow: hidden;
-    background: #fdd;
+    background: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#site-header .wrapper {
+	height: 40px;
+}
+.site-branding, .site-branding img {
+	height: 100%;
 }
 #site-content {
     min-height: 250px;
 	overflow: hidden;
+}
+#site-content .wrapper {
     background: #ddf;
+	padding: 10px;
+	border-bottom: 10px solid #555;
 }
 #site-footer {
     height: 150px;
 	overflow: hidden;
+}
+#site-footer .wrapper {
     background: #fdf;
+	padding: 10px;
+    height: 100%;
 }
 
 
@@ -64,11 +83,11 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
     height: 100%;
     left: -200px;
     top: 0px;
-	overflow: hidden;
-    background: #dfd;
 }
-#page.nav-expand #site-nav {
-    position: absolute;
+#site-nav {
+	background-color: #f25f70;
+	border-right: 2px solid rgba(0, 0, 0, 0.15);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 #menu-toggle {
@@ -76,19 +95,21 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 	text-align: center;
     float: left;
 	cursor: pointer;
-	background: #f00;
+	background-color: #f25f70;
 	width: 40px;
 	height: 40px;
 	line-height: 40px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 #menu-toggle:before {
 	font-family: "Glyphicons Halflings";
 	content: "\e236";
-}
-#menu-toggle:hover:before {
-	color: #f00;
+	color: #fff;
 }
 
+#site-nav {
+}
 #site-nav .menu ul {
 	margin: 0;
 	padding: 0;
@@ -96,17 +117,18 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 }
 #site-nav .menu ul li a {
 	display: block;
-	background: #222;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
+	/*font-family: 'Open Sans', sans-serif;*/
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
 	color: #fff;
-	font-family: 'Open Sans', sans-serif;
 }
 #site-nav .menu ul li a:hover {
 	text-decoration: none; /*remove underline*/
-	color: #c000.3;
+	color: #c00007;
 }
 #site-nav .menu ul ul li a:before {
 	font-family: "Glyphicons Halflings";
@@ -120,20 +142,26 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 
 @media screen and (min-width: 768px) {
     /* General */
-    header {
-        min-height: 150px;
-    }
 	.wrapper {
 		max-width: 960px;
 		margin: 0 auto;
 		clear: both;
+	}
+    #site-header {
+        min-height: 150px;
+    }
+	#site-header .wrapper {
+		height: auto;
+	}
+	#site-content .wrapper {
+		border-bottom: 10px solid #fff;
 	}
 
     /* Navigational Menu Positioning */
     #page #site-nav, #page.nav-expand #site-nav {
         position: relative;
         width: 100%;
-        height: 50px;
+        height: auto;
         left: 0px;
         transition: none;
     }
@@ -146,8 +174,10 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
     }
 
 	/* Navigational Menu General Styling */
-	#site-nav {
-		background:#f00;
+	#site-nav, #site-nav ul li ul {
+		background-color: #f25f70;
+		border-right: 2px solid rgba(0, 0, 0, 0.15);
+		border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 	}
 	#site-nav .menu {
 		display: block;
@@ -164,18 +194,26 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 		height: 50px;
 		line-height: 50px;
 		white-space: nowrap;
+		text-transform: uppercase;
 	}
 	#site-nav .menu ul li a:after {
 		content: " \2022";
 		margin-left: 15px;
+		color: #fff;
 	}
-	#site-nav .menu ul li:last-child a:after {
+	#site-nav .menu ul li:last-child a:after, #site-nav .menu ul ul a:after {
 		content: "";
 	}
-	#site-nav .menu ul li a:hover {
-	}
-	#site-nav .menu ul ul {
+	#site-nav .menu ul li ul {
 		display: none;
+		position: absolute;
+		text-align: left;
+	}
+	#site-nav .menu ul li:hover ul {
+		display: block;
+	}
+	#site-nav .menu ul li:hover ul li {
+		display: block;
 	}
 
 	
@@ -185,7 +223,7 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
         height: 0px;
     }
     #page.nav-shrink #nav-push, #page.nav-shrink #site-nav {
-        height: 40px;
+        height: auto;
     }
     #page.nav-shrink #site-nav {
         position: fixed;

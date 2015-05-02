@@ -11,6 +11,7 @@ Text Domain: ladystoneviolins
 
 /* inspiration from
 https://selademo.wordpress.com/
+http://www.webdesignerdepot.com/2013/03/20-excellent-contact-pages/
 among others
 */
 
@@ -19,7 +20,8 @@ among others
 
 /*
 Fonts:
-Ladystone Violins - http://openfontlibrary.org/en/font/classica
+Header - http://openfontlibrary.org/en/font/classica
+Navigation - http://fonts.googleapis.com/css?family=Source+Sans+Pro
 Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 */
 
@@ -30,6 +32,11 @@ Navigation - http://fonts.googleapis.com/css?family=Open+Sans
 body {
 	background: #333;
 }
+
+/*--------------------------------------------------------------
+ Header
+--------------------------------------------------------------*/
+
 #site-header {
 	overflow: hidden;
     background: #fff;
@@ -39,26 +46,13 @@ body {
 #site-header .wrapper {
 	height: 40px;
 }
-.site-branding, .site-branding img {
+#site-header .site-branding-mobile, #site-header .site-branding-mobile img {
 	height: 100%;
+	text-align: center;
+	margin-left: -68px; /* NOTE: this is a fixed width centering trick */
 }
-#site-content {
-    min-height: 250px;
-	overflow: hidden;
-}
-#site-content .wrapper {
-    background: #ddf;
-	padding: 10px;
-	border-bottom: 10px solid #555;
-}
-#site-footer {
-    height: 150px;
-	overflow: hidden;
-}
-#site-footer .wrapper {
-    background: #fdf;
-	padding: 10px;
-    height: 100%;
+#site-header .site-branding {
+	display: none;
 }
 
 
@@ -110,12 +104,12 @@ body {
 
 #site-nav {
 }
-#site-nav .menu ul {
+#site-nav  ul {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 }
-#site-nav .menu ul li a {
+#site-nav  ul li a {
 	display: block;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -126,15 +120,52 @@ body {
 	font-weight: bold;
 	color: #fff;
 }
-#site-nav .menu ul li a:hover {
+#site-nav  ul li a:hover {
 	text-decoration: none; /*remove underline*/
 	color: #c00007;
 }
-#site-nav .menu ul ul li a:before {
+#site-nav  ul ul li a:before {
 	font-family: "Glyphicons Halflings";
 	content: "\e080";
 	margin-right: 10px;
 }
+
+/*--------------------------------------------------------------
+ Site Content
+--------------------------------------------------------------*/
+#site-content {
+    min-height: 250px;
+	overflow: hidden;
+}
+#site-content .wrapper {
+    background: #fff;
+	padding: 10px;
+	border-bottom: 10px solid #333;
+	border-top: 10px solid #333;
+}
+#site-content #main div {
+	border: 1px solid #f00;
+	background-color:rgba(255,0,0,0.05);
+}
+#site-content #main > div {
+	position: relative;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+ Footer
+--------------------------------------------------------------*/
+#site-footer {
+    height: 150px;
+	overflow: hidden;
+}
+#site-footer .wrapper {
+    background: #fff;
+	padding: 10px;
+    height: 100%;
+}
+
 
 /*--------------------------------------------------------------
  Media Queries
@@ -147,14 +178,19 @@ body {
 		margin: 0 auto;
 		clear: both;
 	}
+
+    /* Header */
     #site-header {
         min-height: 150px;
     }
 	#site-header .wrapper {
 		height: auto;
 	}
-	#site-content .wrapper {
-		border-bottom: 10px solid #fff;
+	#site-header .site-branding-mobile {
+		display: none;
+	}
+	#site-header .site-branding {
+		display: block;
 	}
 
     /* Navigational Menu Positioning */
@@ -179,14 +215,14 @@ body {
 		border-right: 2px solid rgba(0, 0, 0, 0.15);
 		border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 	}
-	#site-nav .menu {
+	#site-nav  {
 		display: block;
 		text-align: center;
 	}
-	#site-nav .menu ul li {
+	#site-nav  ul li {
 		display: inline-block;
 	}
-	#site-nav .menu ul li a {
+	#site-nav  ul li a {
 		padding-top: 0px;
 		padding-bottom: 0px;
 		padding-left: 10px;
@@ -195,24 +231,29 @@ body {
 		line-height: 50px;
 		white-space: nowrap;
 		text-transform: uppercase;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
 	}
-	#site-nav .menu ul li a:after {
+	#site-nav  ul li a:after {
 		content: " \2022";
 		margin-left: 15px;
 		color: #fff;
 	}
-	#site-nav .menu ul li:last-child a:after, #site-nav .menu ul ul a:after {
+	#site-nav  ul li:last-child a:after, #site-nav  ul ul a:after {
 		content: "";
 	}
-	#site-nav .menu ul li ul {
+	#site-nav  ul li ul {
 		display: none;
 		position: absolute;
+		z-index: 9999;
 		text-align: left;
 	}
-	#site-nav .menu ul li:hover ul {
+	#site-nav  ul li:hover ul {
 		display: block;
 	}
-	#site-nav .menu ul li:hover ul li {
+	#site-nav  ul li:hover ul li {
 		display: block;
 	}
 
@@ -227,16 +268,13 @@ body {
     }
     #page.nav-shrink #site-nav {
         position: fixed;
+		z-index: 9999;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
-	#page.nav-shrink #site-nav .menu ul li a {
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
+	#page.nav-shrink #site-nav  ul li a {
 		height: 40px;
 		line-height: 40px;
 	}

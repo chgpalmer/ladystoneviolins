@@ -1,15 +1,18 @@
-<!-- header -->
 <?php
 /**
  * The main template file.
  * @package Ladystoneviolins
  */
+?>
 
-get_header(); ?>
+<!-- header -->
+<?php get_header(); ?>
 
 <!-- main content -->
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
+
+		<h2><?php echo get_the_title( $ID ); ?></h2> 
 
 		<!-- 'the loop' -->
 		<!-- if there are posts : while there are still posts : increment the post index; get post content; -->

@@ -54,8 +54,11 @@ function init() {
 	camera.position.set( e, e, e );
 
 	//add renderer
-	renderer = new THREE.WebGLRenderer();
+	//renderer = new THREE.WebGLRenderer();
+	renderer = new THREE.WebGLRenderer({ alpha: true });
 	renderer.setSize( window.innerWidth, window.innerHeight );
+	//renderer.set( window.innerWidth, window.innerHeight );
+	renderer.setClearColor( 0xffffff, 1);
 	document.body.appendChild( renderer.domElement );
 
 	// add fps stats
@@ -115,7 +118,7 @@ function render() {
 			if(mouseDown) {
 				violin.uuidToPart( intersectedMesh.uuid ).focus = true;
 				violin.focusOnPart( intersectedMesh.uuid );
-				intersectedMesh.material.emissive.setHex( 0xffffff );
+				intersectedMesh.material.emissive.setHex( 0x0000ff );
 			}
 			else
 				intersectedMesh.material.emissive.setHex( 0xff0000 );

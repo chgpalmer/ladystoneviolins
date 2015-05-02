@@ -25,11 +25,14 @@
 			<div id="menu-toggle">
 			</div>
 
-			<div class="site-branding">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/ladystoneviolins.png" alt="Ladystone Violins - British maker and restorer of stringed instruments">
-				</a>
-			</div><!-- .site-branding -->
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<div class="site-branding-mobile">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/ladystoneviolins_mobile.png" alt="Ladystone Violins - British maker and restorer of stringed instruments">
+				</div><!-- .site-branding-mobile -->
+				<div class="site-branding">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/ladystoneviolins.png" alt="Ladystone Violins - British maker and restorer of stringed instruments">
+				</div><!-- .site-branding -->
+			</a>
 		</div><!-- .wrapper -->
 
     </header><!-- #site-header -->

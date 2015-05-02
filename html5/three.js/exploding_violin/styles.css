@@ -9,6 +9,18 @@ canvas {
 
 #menu {
 	position: absolute;
-	color: #fff;
+	color: #000;
 	left: 10%;
+	padding: 10px;
+	background: #fee;
+	border: 1px solid #000;
+}
+#menu li {
+}
+
+#description {
+	display: none;
+}
+#description.show {
+	display: none;
 }

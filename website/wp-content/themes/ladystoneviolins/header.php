@@ -12,7 +12,7 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&amp;subset=latin,cyrillic,greek' rel='stylesheet' type='text/css' />
+<link type="text/css" rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/exploding_violin/styles.css">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
 <?php wp_head(); ?>
 </head>

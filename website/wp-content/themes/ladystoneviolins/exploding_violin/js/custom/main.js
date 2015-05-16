@@ -59,19 +59,7 @@ function init() {
 	renderer.setSize( container.clientWidth-20, (container.clientWidth-20)/2 );
 	renderer.setClearColor( 0xffffff, 1);
 	container.appendChild( renderer.domElement );
-	//document.body.appendChild( renderer.domElement );
 
-/*
-	// add fps stats
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '0px';
-	container.appendChild( stats.domElement );
-*/
-
-	// add OrbitControls so we can pan around with the mouse
-	//controls = new THREE.OrbitControls(camera, renderer.domElement);
-	//controls.noZoom = true;
 
 }
 
